@@ -23,11 +23,11 @@ A company wants to know the ***CTR ( Click Through Rate )*** in order to identif
    
 - [x] Data-set analysis
     * In the data-analysis part we've figured out questions as follows:
-        * What age group does the data-set majorly consist of?
-        <img width="449" alt="figure_1.png" src="../images/dataset_visualization/Figure_1.png">
-        * What is the income distribution in different age groups?
-        <img width="449" alt="figure_2.png" src="../images/dataset_visualization/Figure_2.png">
-        * Which gender has clicked more on online ads?
+        * #### What age group does the data-set majorly consist of?
+            <br><img width="449" alt="figure_1.png" src="https://raw.githubusercontent.com/aksh-51n9h/logit_ad_click/main/images/dataset_visualization/Figure_1.png"><br>
+        * #### What is the income distribution in different age groups?
+            <br><img width="449" alt="figure_2.png" src="https://raw.githubusercontent.com/aksh-51n9h/logit_ad_click/main/images/dataset_visualization/Figure_2.png"><br>
+        * #### Which gender has clicked more on online ads?
  
 - [ ] How we are going to solve this problem?
     * We'll use binary classification (implemented using Logistic Regression) of whether a given ad on a given page will be clicked by a given user, with predictive features from the following aspects: 
