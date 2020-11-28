@@ -24,7 +24,9 @@ A company wants to know the ***CTR ( Click Through Rate )*** in order to identif
 - [x] Data-set analysis
     * In the data-analysis part we've figured out questions as follows:
         * What age group does the data-set majorly consist of?
+        <img width="449" alt="figure_1.png" src="../images/dataset_visualization/Figure_1.png">
         * What is the income distribution in different age groups?
+        <img width="449" alt="figure_2.png" src="../images/dataset_visualization/Figure_2.png">
         * Which gender has clicked more on online ads?
  
 - [ ] How we are going to solve this problem?
