@@ -1,9 +1,5 @@
 import numpy as np
 
-"""
-Logistic regression is a probabilistic classifier, similar to the Naive Bayes classifier.
-"""
-
 
 def sigmoid(z):
     """
@@ -14,82 +10,78 @@ def sigmoid(z):
     return 1 / (1 + np.exp(-z))
 
 
-def compute_prediction(X, weights):
+class LogisticRegression:
     """
-    Compute the prediction y_hat based on current weights
-    :param X:
-    :param weights:
-    :return: numpy.ndarray, y_hat of x under weights
-    """
-    z = np.dot(X, weights)
-    predictions = sigmoid(z)
-    return predictions
-
-
-def update_weights_gd(X_train, y_train, weights, learning_rate):
-    """
-    Update weights by one step
-    :param X_train:
-    :param y_train:
-    :param weights:
-    :param learning_rate:
-    :return: numpy.ndarray, updated weights
+    Logistic regression is a probabilistic classifier, similar to the Naive Bayes classifier.
     """
 
-    predictions = compute_prediction(X_train, weights)
-    weights_delta = np.dot(X_train.T, y_train - predictions)
+    def __init__(self, learning_rate=0.01, max_iter=1000, fit_intercept=False, optimizer='gd'):
+        self.__learning_rate = learning_rate
+        self.__max_iter = max_iter
+        self.__fit_intercept = fit_intercept
+        self.__optimizer = optimizer
+        self.__weights = None
 
-    m = y_train.shape[0]
-    weights += learning_rate / float(m) * weights_delta
+    def __compute_prediction(self, x):
+        """
+        Compute the prediction y_hat based on current weights
+        :param x:
+        :return: numpy.ndarray, y_hat of x under weights
+        """
+        z = np.dot(x, self.__weights)
+        predictions = sigmoid(z)
+        return predictions
 
-    return weights
+    def __update_weights_gd(self, x_train, y_train):
+        """
+        Update weights by one step
+        :param x_train:
+        :param y_train:
+        :return:
+        """
 
+        predictions = self.__compute_prediction(x_train)
+        weights_delta = np.dot(x_train.T, y_train - predictions)
 
-def compute_cost(X, y, weights):
-    """
-    Compute the cost J(w)
-    :param X:
-    :param y:
-    :param weights:
-    :return: float
-    """
+        m = y_train.shape[0]
+        self.__weights += self.__learning_rate / float(m) * weights_delta
 
-    predictions = compute_prediction(X, weights)
-    cost = np.mean(-y * np.log(predictions) - (1 - y) * np.log(1 - predictions))
+    def __compute_cost(self, x, y):
+        """
+        Compute the cost J(w)
+        :param x:
+        :param y:
+        :return:
+        """
 
-    return cost
+        predictions = self.__compute_prediction(x)
+        cost = np.mean(-y * np.log(predictions) - (1 - y) * np.log(1 - predictions))
 
+        return cost
 
-def train_logistic_regression(X_train, y_train, max_iter, learning_rate, fit_intercept=False, ):
-    """
-    Train a logistic regression model
-    :param X_train:
-    :param y_train:
-    :param max_iter:
-    :param learning_rate:
-    :param fit_intercept:
-    :return: numpy.ndarray, learned weights
-    """
+    def fit(self, x_train, y_train):
+        """
+        Train a logistic regression model
+        :param x_train:
+        :param y_train:
+        :return:
+        """
 
-    if fit_intercept:
-        intercept = np.ones((X_train.shape[0], 1))
-        X_train = np.hstack((intercept, X_train))
+        if self.__fit_intercept:
+            intercept = np.ones((x_train.shape[0], 1))
+            x_train = np.hstack((intercept, x_train))
 
-    weights = np.zeros(X_train.shape[1])
+        self.__weights = np.zeros(x_train.shape[1])
 
-    for iteration in range(max_iter):
-        weights = update_weights_gd(X_train, y_train, weights,
-                                    learning_rate)
+        for iteration in range(self.__max_iter):
+            self.__update_weights_gd(x_train, y_train)
 
-        if iteration % 100 == 0:
-            print(compute_cost(X_train, y_train, weights))
+            if iteration % 100 == 0:
+                print(self.__compute_cost(x_train, y_train))
 
-    return weights
+    def predict(self, x):
+        if x.shape[1] == self.__weights.shape[0] - 1:
+            intercept = np.ones((x.shape[0], 1))
+            x = np.hstack((intercept, x))
 
-
-def predict(X, weights):
-    if X.shape[1] == weights.shape[0] - 1:
-        intercept = np.ones((X.shape[0], 1))
-        X = np.hstack((intercept, X))
-
-    return compute_prediction(X, weights)
+        return self.__compute_prediction(x)
