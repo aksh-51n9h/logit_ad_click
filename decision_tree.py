@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import roc_auc_score
 from sklearn.preprocessing import OneHotEncoder
-from sklearn.tree import DecisionTreeClassifier, export_graphviz
+from sklearn.tree import DecisionTreeClassifier
 
 from logistic_regression import LogisticRegression
 
@@ -238,11 +238,16 @@ if __name__ == "__main__":
     tree_sk.fit(X_train_enc.toarray(), Y_train)
 
     pred = tree_sk.predict(X_test_enc.toarray())
-    print("Training samples: {0}, AUC on testing set: {1:.3f}".format(n_train, roc_auc_score(Y_test, pred)))
+    print("--" * 25)
+    print("Decision Tree Accuracy score:",
+          "Training samples: {0}, AUC on testing set: {1:.3f}".format(n_train, roc_auc_score(Y_test, pred)), sep="\n")
 
-    logistic_regression = LogisticRegression(fit_intercept=True, max_iter=100, learning_rate=0.12, verbose=1)
+    logistic_regression = LogisticRegression(fit_intercept=True, max_iter=1000, learning_rate=0.12, verbose=0)
 
     logistic_regression.fit(X_train_enc.toarray(), Y_train)
     pred = logistic_regression.predict(X_test_enc.toarray())
 
-    print("Training samples: {0}, AUC on testing set: {1:.3f}".format(n_train, roc_auc_score(Y_test, pred)))
+    print("--"*25)
+
+    print("Logistic Regression Accuracy score:",
+          "Training samples: {0}, AUC on testing set: {1:.3f}".format(n_train, roc_auc_score(Y_test, pred)), sep="\n")

@@ -61,7 +61,7 @@ In the data-analysis part we've figured out some interesting questions and tried
 ### What age group does the data-set majorly consist of?
 <br><img width="480" alt="figure_1.png" src="https://raw.githubusercontent.com/aksh-51n9h/logit_ad_click/main/images/dataset_visualization/Figure_1.png"><br>
 From the above graph, we can observe that the oldest person in the data-set is 61 years old and the youngest person is 19 years old.
-<br><img width="240" alt="age_fig.png" src="https://raw.githubusercontent.com/aksh-51n9h/logit_ad_click/main/images/dataset_visualization/age_fig.png"><br>
+<br><img width="480" alt="age_fig.png" src="https://raw.githubusercontent.com/aksh-51n9h/logit_ad_click/main/images/dataset_visualization/age_fig.png"><br>
 
 
 ### What is the income distribution in different age groups?
@@ -76,12 +76,13 @@ From the above graph, we can observe that earnings of the age group of 25-35 are
 Decision Trees are easy to understand, and easy to debug. Decision trees implicitly peform feature selection non-linear realtionships between features.
 
 ### Accuracy score from Decision Tree:
-<img>
+<br><img width="480" alt="auc_score_dt.png" src="https://raw.githubusercontent.com/aksh-51n9h/logit_ad_click/main/images/auc_score/auc_score_dt.png"><br>
 
 ## Logistic Regression:
 Logistic Regression implementation is like walk in the park and efficient to train.
 
 ### Accuracy score from Logistic Regression:
+<br><img width="480" alt="auc_score_lr.png" src="https://raw.githubusercontent.com/aksh-51n9h/logit_ad_click/main/images/auc_score/auc_score_lr.png"><br>
 
 ***We've implemented both the techniques from scratch for better understanding of ours.***
 
