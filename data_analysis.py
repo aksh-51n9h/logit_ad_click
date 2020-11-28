@@ -1,18 +1,23 @@
+import os
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sb
 
-sb.set_theme()
+current_dir = os.getcwd()
+file_path = os.path.join(current_dir, r"data_set/train/advertising.csv")
 
-n = 1000
-
-n_rows = n
-df = pd.read_csv(r"F:\PycharmProjects\logit_ad_click\data_set\train\advertising.csv", nrows=n_rows)
+df = pd.read_csv(file_path)
+print(df.info())
 
 """
 #1: What age group does the data-set majorly consist of?
 """
-sb.distplot(df['age'], bins=20, kde=True, hist_kws=dict(edgecolor="k", linewidth=1))
+sb.distplot(df['age'], bins=20, kde=True,
+            hist_kws=dict(edgecolor="k", linewidth=1))
+print('Oldest person was of:', df['age'].max(), 'Years')
+print('Youngest person was of:', df['age'].min(), 'Years')
+print('Average age was of:', df['age'].mean(), 'Years')
 
 """
 #2: What is the income distribution in different age groups?

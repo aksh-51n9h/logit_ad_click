@@ -15,12 +15,13 @@ class LogisticRegression:
     Logistic regression is a probabilistic classifier, similar to the Naive Bayes classifier.
     """
 
-    def __init__(self, learning_rate=0.01, max_iter=1000, fit_intercept=False, optimizer='gd'):
+    def __init__(self, learning_rate=0.01, max_iter=1000, fit_intercept=False, optimizer='gd', verbose=0):
         self.__learning_rate = learning_rate
         self.__max_iter = max_iter
         self.__fit_intercept = fit_intercept
         self.__optimizer = optimizer
         self.__weights = None
+        self.__verbose = verbose
 
     def __compute_prediction(self, x):
         """
@@ -76,8 +77,8 @@ class LogisticRegression:
         for iteration in range(self.__max_iter):
             self.__update_weights_gd(x_train, y_train)
 
-            if iteration % 100 == 0:
-                print(self.__compute_cost(x_train, y_train))
+            if self.__verbose == 1 and iteration % 100 == 0:
+                print("Iteration: {}, training loss: {}".format(iteration, self.__compute_cost(x_train, y_train)))
 
     def predict(self, x):
         if x.shape[1] == self.__weights.shape[0] - 1:
