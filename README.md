@@ -18,10 +18,10 @@ A company wants to know the ***CTR ( Click Through Rate )*** in order to identif
 
 
 ### Steps involved:
-- [ ] Importing dataset
-    * [CTR Prediction Dataset](https://www.kaggle.com/c/avazu-ctr-prediction/data?select=test.gz)
+- [x] Importing data-set
+    * [Ad-click Prediction Data-set](https://www.kaggle.com/c/avazu-ctr-prediction/data?select=test.gz)
    
-- [ ] Dataset analysis
+- [ ] Data-set analysis
  
 - [ ] How we are going to solve this problem?
     * We'll use binary classification (implemented using Logistic Regression) of whether a given ad on a given page will be clicked by a given user, with predictive features from the following aspects: 
