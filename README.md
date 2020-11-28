@@ -21,7 +21,11 @@ A company wants to know the ***CTR ( Click Through Rate )*** in order to identif
 - [x] Importing data-set
     * [Ad-click Prediction Data-set](https://www.kaggle.com/c/avazu-ctr-prediction/data?select=test.gz)
    
-- [ ] Data-set analysis
+- [x] Data-set analysis
+    * In the data-analysis part we've figured out questions as follows:
+        * What age group does the data-set majorly consist of?
+        * What is the income distribution in different age groups?
+        * Which gender has clicked more on online ads?
  
 - [ ] How we are going to solve this problem?
     * We'll use binary classification (implemented using Logistic Regression) of whether a given ad on a given page will be clicked by a given user, with predictive features from the following aspects: 
