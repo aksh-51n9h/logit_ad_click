@@ -73,7 +73,7 @@ From the above graph, we can observe that earnings of the age group of 25-35 are
 ## Techniques Used:
 
 ## Decision Tree:
-Decision Trees are easy to understand, and easy to debug. Decision trees implicitly peform feature selection non-linear realtionships between features.
+Decision Trees are easy to understand, and easy to debug. Decision trees implicitly perform feature selection non-linear relationships between features.
 
 ### Accuracy score from Decision Tree:
 <br><img width="480" alt="auc_score_dt.png" src="https://raw.githubusercontent.com/aksh-51n9h/logit_ad_click/main/images/auc_score/auc_score_dt.png"><br>
@@ -83,9 +83,9 @@ Logistic Regression implementation is like walk in the park and efficient to tra
 
 ### Accuracy score from Logistic Regression:
 - Accuracy score with gradient descent:
-<br><img width="480" alt="auc_score_lr.png" src="https://raw.githubusercontent.com/aksh-51n9h/logit_ad_click/main/images/auc_score/auc_score_lr.png"><br>
+<br><img width="480" alt="auc_score_lr.png" src="https://raw.githubusercontent.com/aksh-51n9h/logit_ad_click/main/images/auc_score/auc_score_lr_gd.png"><br>
 - Accuracy score with stochastic gradient descent:
-<br><img width="480" alt="auc_score_lr.png" src="https://raw.githubusercontent.com/aksh-51n9h/logit_ad_click/main/images/auc_score/auc_score_lr_sgd.png"><br>
+<br><img width="480" alt="auc_score_lr_sgd.png" src="https://raw.githubusercontent.com/aksh-51n9h/logit_ad_click/main/images/auc_score/auc_score_lr_sgd.png"><br>
 
 ***We've implemented both the techniques from scratch for better understanding of ours.***
 
