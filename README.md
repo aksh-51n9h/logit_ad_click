@@ -18,15 +18,15 @@ Few assumptions are as follows:
 2) The age group in the data-set is between 19 to 61.
 3) Ad topics are not taken into consideration.
 
-#### Dependecies:
+#### Dependencies:
 - Python 3.8
-- numpy : ```pip install numpy```
-- sci-py : ```pip install scipy```
-- pandas : ```pip install pandas```
-- scikit-learn : ```pip install scikit-learn```
-- matplotlib : ```pip install matplotlib```
-- seaborn : ```pip install seaborn```
-- tensorflow : ```pip install tensorflow```
+- numpy
+- sci-py
+- pandas
+- scikit-learn
+- matplotlib
+- seaborn
+- tensorflow
 
 ## Challenges Faced:
 Before working on the dataset, there are a few challenges in this study:
@@ -69,6 +69,7 @@ From the above graph, we can observe that the oldest person in the data-set is 6
 From the above graph, we can observe that earnings of the age group of 25-35 are higher(56K - 70K).
 
 ### Which gender has clicked more on online ads?
+<br><img width="480" alt="figure_3.png" src="https://raw.githubusercontent.com/aksh-51n9h/logit_ad_click/main/images/dataset_visualization/Figure_3.png"><br>
 
 ## Techniques Used:
 

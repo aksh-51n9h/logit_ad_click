@@ -1,8 +1,11 @@
 import os
+import warnings
 
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sb
+
+warnings.filterwarnings("ignore")
 
 current_dir = os.getcwd()
 file_path = os.path.join(current_dir, r"data_set/train/advertising.csv")
@@ -28,5 +31,10 @@ sb.jointplot(x='age', y='area_income', color="green", data=df)
 #3: Which gender has clicked more on online ads?
 """
 report = df.groupby(['gender', 'click'])['click'].count().unstack()
+
+sb.set_style('whitegrid')
+sb.countplot(x='gender', hue='click', data=df, palette='bwr')
+
 print(report)
+
 plt.show()
