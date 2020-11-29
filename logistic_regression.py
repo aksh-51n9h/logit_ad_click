@@ -47,6 +47,19 @@ class LogisticRegression:
         m = y_train.shape[0]
         self.__weights += self.__learning_rate / float(m) * weights_delta
 
+    def __update_weights_sgd(self, x_train, y_train):
+        """
+        One weight update iteration: moving weights by one step based on each individual sample.
+        :param x_train:
+        :param y_train:
+        :return: numpy.ndarray, update weights
+        """
+
+        for x_each, y_each in zip(x_train, y_train):
+            prediction = self.__compute_prediction(x_each)
+            weights_delta = x_each.T * (y_each - prediction)
+            self.__weights += self.__learning_rate * weights_delta
+
     def __compute_cost(self, x, y):
         """
         Compute the cost J(w)
@@ -68,6 +81,8 @@ class LogisticRegression:
         :return:
         """
 
+        optimizers_functions = {'gd': self.__update_weights_gd, 'sgd': self.__update_weights_sgd}
+
         if self.__fit_intercept:
             intercept = np.ones((x_train.shape[0], 1))
             x_train = np.hstack((intercept, x_train))
@@ -75,7 +90,7 @@ class LogisticRegression:
         self.__weights = np.zeros(x_train.shape[1])
 
         for iteration in range(self.__max_iter):
-            self.__update_weights_gd(x_train, y_train)
+            optimizers_functions[self.__optimizer](x_train, y_train)
 
             if self.__verbose == 1 and iteration % 100 == 0:
                 print("Iteration: {}, training loss: {}".format(iteration, self.__compute_cost(x_train, y_train)))

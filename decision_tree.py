@@ -1,10 +1,8 @@
 import numpy as np
-import pandas as pd
 from sklearn.metrics import roc_auc_score
-from sklearn.preprocessing import OneHotEncoder
 from sklearn.tree import DecisionTreeClassifier
 
-from logistic_regression import LogisticRegression
+from dataset_preprocessing import split_data_set
 
 
 def gini_impurity_np(labels):
@@ -209,45 +207,22 @@ if __name__ == "__main__":
 
     visualize_tree(CONDITION, tree)
 
-    x_train_n = [[6, 7], [2, 4], [7, 2], [3, 6], [4, 7], [5, 2], [1, 6], [2, 0], [6, 3], [4, 1]]
-    y_train_n = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]
-
-    n = 1000
-
-    n_rows = n
-    df = pd.read_csv(r"/home/akshnz/PycharmProjects/logit_ad_click/data_set/train/advertising.csv", nrows=n_rows)
-    print(df.info())
-    Y = df['click'].values
-
-    X = df.drop(['click', 'ad_topic_line'], axis=1).values
-
-    n_train = int(n * 0.7)
-
-    X_train = X[:n_train]
-    Y_train = Y[:n_train]
-    X_test = X[n_train:]
-    Y_test = Y[n_train:]
-
-    enc = OneHotEncoder(handle_unknown='ignore')
-    enc.fit(X_train)
-
-    X_train_enc = enc.fit_transform(X_train)
-    X_test_enc = enc.transform(X_test)
+    x_train, y_train, x_test, y_test = split_data_set()
 
     tree_sk = DecisionTreeClassifier(criterion='entropy', min_samples_split=10)
-    tree_sk.fit(X_train_enc.toarray(), Y_train)
+    tree_sk.fit(x_train, y_train)
 
-    pred = tree_sk.predict(X_test_enc.toarray())
+    pred = tree_sk.predict(x_test)
     print("--" * 25)
     print("Decision Tree Accuracy score:",
-          "Training samples: {0}, AUC on testing set: {1:.3f}".format(n_train, roc_auc_score(Y_test, pred)), sep="\n")
+          "Training samples: {0}, AUC on testing set: {1:.3f}".format(700, roc_auc_score(y_test, pred)), sep="\n")
 
-    logistic_regression = LogisticRegression(fit_intercept=True, max_iter=1000, learning_rate=0.12, verbose=0)
-
-    logistic_regression.fit(X_train_enc.toarray(), Y_train)
-    pred = logistic_regression.predict(X_test_enc.toarray())
-
-    print("--"*25)
-
-    print("Logistic Regression Accuracy score:",
-          "Training samples: {0}, AUC on testing set: {1:.3f}".format(n_train, roc_auc_score(Y_test, pred)), sep="\n")
+    # logistic_regression = LogisticRegression(fit_intercept=True, max_iter=1000, learning_rate=0.12, verbose=0)
+    #
+    # logistic_regression.fit(X_train_enc.toarray(), Y_train)
+    # pred = logistic_regression.predict(X_test_enc.toarray())
+    #
+    # print("--" * 25)
+    #
+    # print("Logistic Regression Accuracy score:",
+    #       "Training samples: {0}, AUC on testing set: {1:.3f}".format(n_train, roc_auc_score(Y_test, pred)), sep="\n")
