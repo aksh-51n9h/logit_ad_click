@@ -82,8 +82,12 @@ Decision Trees are easy to understand, and easy to debug. Decision trees implici
 Logistic Regression implementation is like walk in the park and efficient to train.
 
 ### Accuracy score from Logistic Regression:
+- Accuracy score with gradient descent:
 <br><img width="480" alt="auc_score_lr.png" src="https://raw.githubusercontent.com/aksh-51n9h/logit_ad_click/main/images/auc_score/auc_score_lr.png"><br>
+- Accuracy score with stochastic gradient descent:
+<br><img width="480" alt="auc_score_lr.png" src="https://raw.githubusercontent.com/aksh-51n9h/logit_ad_click/main/images/auc_score/auc_score_lr_sgd.png"><br>
 
 ***We've implemented both the techniques from scratch for better understanding of ours.***
 
-## Comparision between Decision Tree and Logistic Regression:
+## Comparison between Decision Tree and Logistic Regression:
+From our training results we can conclude that Logistic Regression with stochastic gradient descent optimizer has more accuracy for determining the ad click probability.
