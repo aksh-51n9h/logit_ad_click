@@ -1,13 +1,14 @@
 import numpy as np
 
 
-def sigmoid(z):
+def sigmoid_activation_function(z):
     """
     Maps an input to an output of a value between 0 and 1.
     :param z:
     :return: float, [0,1]
     """
-    return 1 / (1 + np.exp(-z))
+    val = 1 / (1 + np.exp(-z))
+    return val
 
 
 class LogisticRegression:
@@ -30,10 +31,10 @@ class LogisticRegression:
         :return: numpy.ndarray, y_hat of x under weights
         """
         z = np.dot(x, self.__weights)
-        predictions = sigmoid(z)
+        predictions = sigmoid_activation_function(z)
         return predictions
 
-    def __update_weights_gd(self, x_train, y_train):
+    def __update_weights_grad_desc(self, x_train, y_train):
         """
         Update weights by one step
         :param x_train:
@@ -47,7 +48,7 @@ class LogisticRegression:
         m = y_train.shape[0]
         self.__weights += self.__learning_rate / float(m) * weights_delta
 
-    def __update_weights_sgd(self, x_train, y_train):
+    def __update_weights_stoc_gd(self, x_train, y_train):
         """
         One weight update iteration: moving weights by one step based on each individual sample.
         :param x_train:
@@ -81,7 +82,7 @@ class LogisticRegression:
         :return:
         """
 
-        optimizers_functions = {'gd': self.__update_weights_gd, 'sgd': self.__update_weights_sgd}
+        optimizers_functions = {'gd': self.__update_weights_grad_desc, 'sgd': self.__update_weights_stoc_gd}
 
         if self.__fit_intercept:
             intercept = np.ones((x_train.shape[0], 1))

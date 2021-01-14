@@ -5,15 +5,6 @@ from sklearn.tree import DecisionTreeClassifier
 from dataset_preprocessing import split_data_set
 
 
-def gini_impurity_np(labels):
-    if labels.size == 0:
-        return 0
-
-    counts = np.unique(labels, return_counts=True)[1]
-    fractions = counts / float(len(labels))
-    return 1 - np.sum(fractions ** 2)
-
-
 def entropy_np(labels):
     if labels.size == 0:
         return 0
@@ -24,7 +15,7 @@ def entropy_np(labels):
     return -np.sum(fractions * np.log2(fractions))
 
 
-def weighted_impurity(groups, criterion='gini'):
+def weighted_impurity(groups, criterion='entropy'):
     """
     Calculated weighted impurity of children after a split
     :param groups: list of children, and a child consist a list of class labels
@@ -32,7 +23,7 @@ def weighted_impurity(groups, criterion='gini'):
     :return: flaot, weighted impurity
     """
 
-    criterion_function_np = {'gini': gini_impurity_np, 'entropy': entropy_np}
+    criterion_function_np = {'entropy': entropy_np}
 
     total = sum(len(group) for group in groups)
     weighted_sum = 0.0
@@ -42,7 +33,7 @@ def weighted_impurity(groups, criterion='gini'):
     return weighted_sum
 
 
-def split_node(x, y, index, value):
+def split_tree_node(x, y, index, value):
     """
     Split data-set x, y baesd on a feature and a value
     :param x: data-set features
@@ -83,7 +74,7 @@ def get_best_split(x, y, criterion):
 
     for index in range(len(x[0])):
         for value in np.sort(np.unique(x[:, index])):
-            groups = split_node(x, y, index, value)
+            groups = split_tree_node(x, y, index, value)
             impurity = weighted_impurity([groups[0][1], groups[1][1]], criterion)
 
             if impurity < best_score:
@@ -159,7 +150,7 @@ def split(node, max_depth, min_size, depth, criterion):
             split(node['right'], max_depth, min_size, depth + 1, criterion)
 
 
-def train_tree(x_train, y_train, max_depth, min_size, criterion='gini'):
+def train_decision_tree(x_train, y_train, max_depth, min_size, criterion='entropy'):
     """
     Construction of a tree starts here
     :param x_train: features
@@ -177,7 +168,7 @@ def train_tree(x_train, y_train, max_depth, min_size, criterion='gini'):
     return root
 
 
-def visualize_tree(CONDITION, node, depth=0):
+def visualize_decision_tree(CONDITION, node, depth=0):
     if isinstance(node, dict):
         if node['value'].dtype.kind in ['i', 'f']:
             condition = CONDITION['numerical']
@@ -186,11 +177,11 @@ def visualize_tree(CONDITION, node, depth=0):
         print('{}|- X{} {} {}'.format(depth * ' ',
                                       node['index'] + 1, condition['no'], node['value']))
         if 'left' in node:
-            visualize_tree(node['left'], depth + 1)
+            visualize_decision_tree(node['left'], depth + 1)
         print('{}|- X{} {} {}'.format(depth * ' ',
                                       node['index'] + 1, condition['yes'], node['value']))
         if 'right' in node:
-            visualize_tree(node['right'], depth + 1)
+            visualize_decision_tree(node['right'], depth + 1)
     else:
         print('{}[{}]'.format(depth * ' ', node))
 
@@ -201,11 +192,11 @@ if __name__ == "__main__":
                ['technology', 'student'], ['technology', 'retired'], ['sports', 'professional']]
     y_train = [1, 0, 0, 0, 1, 0, 1]
 
-    tree = train_tree(x_train, y_train, 2, 2)
+    tree = train_decision_tree(x_train, y_train, 2, 2)
 
     CONDITION = {'numerical': {'yes': '>=', 'no': '<'}, 'categorical': {'yes': 'is', 'no': 'is_not'}}
 
-    visualize_tree(CONDITION, tree)
+    visualize_decision_tree(CONDITION, tree)
 
     x_train, y_train, x_test, y_test = split_data_set()
 
@@ -213,16 +204,7 @@ if __name__ == "__main__":
     tree_sk.fit(x_train, y_train)
 
     pred = tree_sk.predict(x_test)
+
     print("--" * 25)
     print("Decision Tree Accuracy score:",
           "Training samples: {0}, AUC on testing set: {1:.3f}".format(700, roc_auc_score(y_test, pred)), sep="\n")
-
-    # logistic_regression = LogisticRegression(fit_intercept=True, max_iter=1000, learning_rate=0.12, verbose=0)
-    #
-    # logistic_regression.fit(X_train_enc.toarray(), Y_train)
-    # pred = logistic_regression.predict(X_test_enc.toarray())
-    #
-    # print("--" * 25)
-    #
-    # print("Logistic Regression Accuracy score:",
-    #       "Training samples: {0}, AUC on testing set: {1:.3f}".format(n_train, roc_auc_score(Y_test, pred)), sep="\n")

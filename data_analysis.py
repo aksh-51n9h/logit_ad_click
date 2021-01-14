@@ -16,7 +16,7 @@ print(df.info())
 """
 #1: What age group does the data-set majorly consist of?
 """
-sb.distplot(df['age'], bins=20, kde=True,
+sb.distplot(df['age'], bins=10, kde=True,
             hist_kws=dict(edgecolor="k", linewidth=1))
 print('Oldest person was of:', df['age'].max(), 'Years')
 print('Youngest person was of:', df['age'].min(), 'Years')
@@ -25,7 +25,7 @@ print('Average age was of:', df['age'].mean(), 'Years')
 """
 #2: What is the income distribution in different age groups?
 """
-sb.jointplot(x='age', y='area_income', color="green", data=df)
+sb.jointplot(x='age', y='area_income', color="blue", data=df)
 
 """
 #3: Which gender has clicked more on online ads?
