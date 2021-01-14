@@ -1,14 +1,16 @@
-# Ad-Click Prediction
-Machine learning in has evolved in recent time. It has now a variety of applications in the real world such as predictive analysis, automated things, decision making for business purpose.
+# Logit Ad-Click
+Online advertising is a multi-billion-dollar business producing most of the revenue for search engines. Recently one area is drawing attention among both researchers and machine learning practitioners i.e., Click Through Rate. Being able to predict this rate means meeting business targets. Accurate Click Through Rate (CTR) prediction can not only improve the advertisement company’s reputation and revenue, but also help the advertisers to optimize the advertising performance. In this project, we will develop a CTR prediction approach by utilising real time advertising data by the following strategies: user profile system is created for the purpose of classifying the advertisement data. The output of this user graph system includes the user’s age, gender, and the interest preferences. We will develop CTR prediction model by Decision Tree Model and Logistic Regression and compare them.
 
-We can apply this knowledge of machine learning into the business purpose for making a profit, and also discovering something interesting from the data.
+## Click-through Rate (CTR)
+Click-through rate (CTR) is defined as the ratio of users who click on a specific ad to the number of total users who view a page, email, or advertisement. It is used to measure the success of an online advertising campaign for a particular website as well as the effectiveness of email campaigns.
 
-## Motivation 
-The incentive behind this project is "CTR (Click Through Rate)". In simple words, CTR is the ratio between the number of clicks advertisers receive on their ads and the number of impressions.
+## Methodology
+To implement the above goals, the following methodology need to be followed:
+1.	Analysis of dataset.
+2.	Training of models.
+3.	Model improvement.
+4.	Final Model.
 
-A company wants to know the **CTR ( Click Through Rate )** to identify whether spending their money on online marketing is worth or not.
-
-If CTR is higher that means users are more interested in the specific campaign, else wise if CTR is lower then it means that the ad may not be relevant to the users.
 
 ## Problem Statement
 The goal of this project is to predict if a user would click on ad based on the features of the user.
@@ -55,16 +57,16 @@ The data-set consist of the following features:
 ## Cleaning data-set:
 - Dropped 'Advertisement Topic Line' as mentioned above. Since if we want to extract some useful then we've to apply NLP and for now, it is not part of this project.
 
-## Data Analysis:
+## Dataset Analysis:
 In the data-analysis part we've figured out some interesting questions and tried to find  answers for the same.
 
-### What age group does the data-set majorly consist of?
+### What age group does dataset consists of?
 <br><img width="480" alt="figure_1.png" src="https://raw.githubusercontent.com/aksh-51n9h/logit_ad_click/main/images/dataset_visualization/Figure_1.png"><br>
 From the above graph, we can observe that the oldest person in the data-set is 61 years old and the youngest person is 19 years old.
 <br><img width="480" alt="age_fig.png" src="https://raw.githubusercontent.com/aksh-51n9h/logit_ad_click/main/images/dataset_visualization/age_fig.png"><br>
 
 
-### What is the income distribution in different age groups?
+### What is the distribution of annual income in different age groups?
 <br><img width="480" alt="figure_2.png" src="https://raw.githubusercontent.com/aksh-51n9h/logit_ad_click/main/images/dataset_visualization/Figure_2.png"><br>
 From the above graph, we can observe that earnings of the age group of 25-35 are higher(56K - 70K).
 
@@ -92,3 +94,14 @@ Logistic Regression implementation is like walk in the park and efficient to tra
 
 ## Comparison between Decision Tree and Logistic Regression:
 From our training results we can conclude that Logistic Regression with stochastic gradient descent optimizer has more accuracy for determining the ad click probability.
+
+## Future Scope
+Having full access to the original dataset would be interesting. Explore and manipulate features would undoubtedly bring us exciting and robust insights to optimize model performance. Thus, the feature selecting step would be highly accurate. Deal with imbalanced data is considered a real-world data science problem. Exploring further methods would be interesting. The deep neural network may be an interesting for the further future study of the CTR prediction.
+
+## References
+1.	SEN ZHANG, QIANG FU, WENDONG XIAO (2017). Advertisement Click-Through Rate Prediction Based on the Weighted-ELM and Adaboost Algorithm. Scientific Programming, vol. 2017, Article ID 2938369. https://www.hindawi.com/journals/sp/2017/2938369/.
+2.	PRASHANT GUPTA (2017). Decision Trees in Machine Learning. https://towardsdatascience.com/decision-trees-in-machine-learning-641b9c4e8052 .
+3.	AYUSH PANT (2019). Introduction to Logistic Regression. https://towardsdatascience.com/introduction-to-logistic-regression-66248243c148 .
+4.	BADREESH SHETTY (2018). Natural Language Processing(NLP) for Machine Learning. https://towardsdatascience.com/natural-language-processing-nlp-for-machine-learning-d44498845d5b
+5.	AURELIEN GERON (2017). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems.
+6.	EDWARD LOPER, EWAN KLEIN, AND STEVEN BIRD (2009). Natural Language Processing with Python.
